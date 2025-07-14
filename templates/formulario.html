@@ -11,8 +11,7 @@
 <body>
     <div class="cadastro-container">
         <div class="cadastro-header">
-            <h1>Bem-vindo, Faça seu cadastro ai kk</h1>
-            <p>É sua primeira vez? relaxa kk cadastra</p>
+            <h1>Bem-vindo, Faça seu cadastro 🇧🇷</h1>
         </div>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -28,7 +27,6 @@
             {% if error %}
             <div class="error-message">{{ error }}</div>
             {% endif %}
-
             <div class="form-group">
                 <label for="username">Usuário</label>
                 <input type="text" id="username" name="username" placeholder="Digite seu usuário" required>
