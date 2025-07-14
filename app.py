@@ -1,18 +1,31 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, flash, redirect, url_for
 
 app = Flask(__name__)
+app.secret_key = 'edudela'
 
-@app.route('/user/<username>')
-def profile(username):
-    return render_template("profile.html", user=username)
+@app.route('/')
+def index():
+    return redirect(url_for('registrarUsuario'))
 
-@app.route("/")
-def home():
-    products = ['Shoes', 'Tshirts', 'Paints', 'Jeans']
+@app.route('/registrarUsuario', methods=['GET', 'POST'])
+def registrarUsuario():
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
 
-    logado = True
 
-    return render_template("home.html", products=products, logado=logado)
+        # Validação simples do lado do servidor
+        if not username or not email or not password:
+            flash('Todos os campos são obrigatórios', 'danger')
+        else:
+            flash(f'Usuário {username} cadastrado com sucesso!', 'success')
+            return redirect(url_for('registrarUsuario'))
+
+        # flash(): Armazena uma mensagem que será exibida na próxima requisição. Isso
+        # é útil para fornecer mensagens ao usuário.
+
+    return render_template('formulario.html')
+                           
 if __name__ == '__main__':
     app.run(debug=True)
-
