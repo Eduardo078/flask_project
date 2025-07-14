@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -23,7 +24,7 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-        <form class="cadastro-form" method="POST" action="/registrarUsuario">
+        <form class="cadastro-form" method="POST" action="/registrarUsuario" id="form">
             {% if error %}
             <div class="error-message">{{ error }}</div>
             {% endif %}
@@ -41,11 +42,14 @@
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
             </div>
+            <p id="mensagem"></p>
 
 
-            <button type="submit" class="login-button">cadastrar</button>
+
+            <button type="submit" class="login-button" id="botao">cadastrar</button>
         </form>
     </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 
 </html>
